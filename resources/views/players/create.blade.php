@@ -23,7 +23,7 @@
               <label for="firstName" class="form-label">First Name</label>
               <input type="text" class="form-control" name="firstName" placeholder="Enter First Name">
               @error('firstName')
-              <span class="invalid-feedback" role="alert">
+              <span class="text-danger">
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
@@ -32,7 +32,7 @@
               <label for="surname" class="form-label">Surname</label>
               <input type="text" class="form-control" name="surname" placeholder="Enter Surname">
               @error('surname')
-              <span class="invalid-feedback" role="alert">
+              <span class="text-danger">
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
@@ -41,7 +41,7 @@
               <label for="age" class="form-label">Age</label>
               <input type="text" class="form-control" name="age" placeholder="Enter Age">
               @error('age')
-              <span class="invalid-feedback" role="alert">
+              <span class="text-danger">
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
@@ -70,7 +70,7 @@
 
 @if(count($errors) > 0 )
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   <ul class="p-0 m-0" style="list-style: none;">

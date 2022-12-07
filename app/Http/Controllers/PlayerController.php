@@ -13,13 +13,13 @@ class PlayerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+
     public function index()
     {
         $players = Player::all();
         return view('players.index', [
             'players' => $players
-            
+
         ]);
     }
 
@@ -30,7 +30,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        
+
         return view('players.create');
     }
 
@@ -43,22 +43,23 @@ class PlayerController extends Controller
     public function store(Request $request, Player $player)
     {
 
-        $validatedData = $request->validate([
+        
+        $request->validate([
 
-            'image' => 'nullable',
+            'image' => 'nullable | mimes:jpg,jpeg,png,gif',
             'firstName' => 'required',
             'surname' => 'required',
             'age' => 'required',
             'position' => 'required',
-            'image' => 'mimes:jpg,jpeg,png,gif'
+            
 
         ]);
 
         $imagePath = (request('image')->store('images', 'public'));
 
-       // dd($imagePath);
+        // dd($imagePath);
 
-        if ($request->hasFile('image') == null){
+        if ($request->hasFile('image') == null) {
             $imagePath = "/uploads/profileImage.jpg";
         } else {
             $imagePath = $request->file('image')->store('images', 'public');
@@ -70,12 +71,11 @@ class PlayerController extends Controller
         $player->position = $request->input('position');
         $player->image = $imagePath;
 
-        
+
 
         $player->save();
 
         return redirect('/players')->with('success', 'Player successfully added');
-
     }
 
     /**
@@ -86,13 +86,12 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        $player = Player::find($id);
-        $players= Player::all();
+        $player = Player::findOrFail($id);
+
 
         return view('players.show', [
-            'players' => $players,
             'player' => $player,
-            'layout' => 'show'
+
         ]);
     }
 
@@ -104,12 +103,11 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        $player = Player::find($id);
-     
+        $player = Player::findOrFail($id);
+
 
         $arr['player'] = $player;
         return view('players.edit')->with($arr);
-        
     }
 
     /**
@@ -123,26 +121,26 @@ class PlayerController extends Controller
     {
         $player = Player::find($id);
 
-        if (!empty($request->input('firstName'))) {           
+        if (!empty($request->input('firstName'))) {
             $player->firstName = $request->input('firstName');
         }
 
-        if (!empty($request->input('surname'))){
+        if (!empty($request->input('surname'))) {
             $player->surname = $request->input('surname');
         }
 
-        if (!empty($request->input('age'))){
+        if (!empty($request->input('age'))) {
             $player->age = $request->input('age');
         }
 
-        if (!empty($request->input('position'))){
+        if (!empty($request->input('position'))) {
             $player->position = $request->input('position');
         }
 
-        if (!empty($request->hasFile('image'))){
+        if (!empty($request->hasFile('image'))) {
             $player->image = (request('image')->store('uploads', 'public'));
         }
-      
+
         $player->save();
 
         return redirect('/players')->with('success', 'Player profile updated');
@@ -158,9 +156,7 @@ class PlayerController extends Controller
     {
         Player::destroy($id);
 
-        
+
         return redirect('/players')->with('Success', 'Player profile successfully deleted!');
-
-
     }
 }

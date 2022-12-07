@@ -9,7 +9,7 @@
       <div class="card mb-3">
         <img src="https://wallpaperaccess.com/full/3278875.jpg" class="card-img-top" alt="Football Image">
         <div class="card-body">
-          <h5 class="card-title">Edit player details</h5>
+          <h5 class="card-title">Edit {{ $player->firstName}}'s details</h5>
 
           <form method="POST" action="{{ route('players.update', $player->id) }}" enctype="multipart/form-data">
             @csrf
@@ -20,21 +20,22 @@
             </div>
             <div class="col-12 pt-2">
               <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" name="firstName" placeholder="Enter First Name">
+              <input type="text" class="form-control" name="firstName" value="{{ $player->firstName}}">
             </div>
             <div class="col-12 pt-2">
               <label for="surname" class="form-label">Surname</label>
-              <input type="text" class="form-control" name="surname" placeholder="Surname">
+              <input type="text" class="form-control" name="surname" value="{{ $player->surname}}">
             </div>
             <div class="col-md-6 pt-2">
               <label for="age" class="form-label">Age</label>
-              <input type="text" class="form-control" name="age">
+              <input type="text" class="form-control" name="age" value="{{ $player->age}}">
             </div>
             <div class="col-md-4 pt-2">
               <label for="position" class="form-label">Position</label>
               <select name="position" class="form-select">
 
-                <option selected>Goalkeeper</option>
+                <option selected>{{ $player->position }}</option>
+                <option>Goalkeeper</option>
                 <option>Defender</option>
                 <option>Midfielder</option>
                 <option>Forward</option>
