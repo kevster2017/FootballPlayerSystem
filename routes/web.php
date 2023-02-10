@@ -26,9 +26,9 @@ Route::resource('players', PlayerController::class)->middleware('auth');
 /* Standard routes if not using resource controller. Authentication middleware added */
 
 //Route::get('players', [PlayerController::class, 'index'])->middleware('auth');
-//Route::get('players/{id}/edit', [PlayerController::class, 'edit'])->middleware('auth');
-//Route::get('players/{id}', [PlayerController::class, 'show'])->middleware('auth');
 //Route::get('players/create', [PlayerController::class, 'create'])->middleware('auth');
 //Route::post('players/store', [PlayerController::class, 'store'])->middleware('auth');
+//Route::get('players/{id}/edit', [PlayerController::class, 'edit'])->middleware('auth');
+//Route::get('players/{id}', [PlayerController::class, 'show'])->middleware('auth');
 //Route::put('players/{id}', [PlayerController::class, 'update'])->middleware('auth');
-//Route::delete('players/{id}', [PlayerController::class, 'destroy'])->middleware('auth'));
+//Route::delete('players/{id}', [PlayerController::class, 'destroy'])->middleware('auth');

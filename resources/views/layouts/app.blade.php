@@ -96,7 +96,7 @@
         <!-- Yield Blade Content and Flash Messages -->
         <main class="py-4">
             <h1 class="text-center pb-2">Football Player System</h1>
-            <div class="container">
+            <div class="container" id="content">
                 @include('flashMessage')
                 @yield('content')
             </div>
